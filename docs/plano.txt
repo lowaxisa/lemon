@@ -1,0 +1,35 @@
+Isso daqui ta em pt-br, se quiser ler traduz
+
+Okay pra nao poluir o diretorio principal, eh melhor criar um /tests automaticamente
+O projeto inteiro o foco eh ser um executavel que monta a estrutura:
+* /backends    - basicamente onde vai ter pastas pros runners que vao ser llama.cpp
+* /models      - a pasta onde fica os modelos do cara, tbm em pasta tipo /meumodelo/modelo.guff
+* settings.txt - vai ficar com as configuracoes do app
+* /chats       - conversas em .txt formato contagem_crescente.txt basicamente acha o maior numero entre os arquivos e pega o proximo
+* /prompts     - contem seusyspromt.txt basicamente um monte de personas que vao no final em tag <prompt> pra IA
+* lemon.exe    - o executavel principal
+
+Pro projeto vo fazer em c++ mesmo com sdl3 e imgui
+
+O llama.cpp em thirdparty eh pra testes do programa
+Eu tenho que escrever algo em comp.ps1 que compile o llama como um generic-cpu-1.0
+Pra decidir logo como fica em /backends
+Bom vai ter uma pasta por exemplo com o nome acima ali e ai deixar o llama-server.exe la dentro junto de todas dlls
+
+Pros modelos supondo que eu esteja dentro da pasta do modelo ex models/modelo1
+- vai ter o modelo em si e qualquer outra extensao pra ele
+- vai ter um load.txt
+O load.txt vai possuir
+ARGS argumentos de inicializacao do modelo no llama-server
+MODEL nome do modelo pra exibir
+
+Os chats serao por exemplo
+# 0.txt
+CHAT_NAME numero de linhas
+nome do chat
+USER_MESSAGE numero de linhas
+mensagem do usuario
+MODEL_MESSAGE numero de linhas
+mensagem do modelo
+
+o numero de linhas diz depois dessa o que eh conteudo real e le so ate um contador chegar a 0
