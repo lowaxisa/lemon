@@ -3,7 +3,29 @@
 #include "imgui_impl_sdl3.h"
 #include "imgui_impl_sdlrenderer3.h"
 
+#include <filesystem>
+#include <string>
+#include <vector>
+#include <windows.h>
+
+// misc
+namespace fs = std::filesystem;
+
+// functions prototype
+void check_dir();
+
+// global vars
+std::filesystem::path executable_path;
+std::filesystem::path executable_dir;
+
 int main(int argc, char *argv[]) {
+    // get executable directory
+    wchar_t buffer[MAX_PATH];
+    DWORD length = GetModuleFileNameW(nullptr, buffer, MAX_PATH);
+    executable_path = std::filesystem::path(buffer);
+    executable_dir = executable_path.parent_path();
+
+    check_dir(); // setup directorys
     // setup sdl
     SDL_Init(SDL_INIT_VIDEO);
 
@@ -58,4 +80,16 @@ int main(int argc, char *argv[]) {
     SDL_DestroyWindow(window);
     SDL_Quit();
     return 0;
+}
+
+void check_dir() { // create base directorys for exe if they doesnt exists
+    std::vector <std::string> paths = {"backends", "models", "chats", "prompts"};
+
+    for (std::string &dir : paths) {
+        std::filesystem::path target_dir = executable_dir / dir;
+
+        if (!fs::exists(target_dir)) {
+            fs::create_directory(target_dir);
+        }
+    }
 }

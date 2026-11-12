@@ -1,0 +1,14 @@
+# LINE COUNT STORE FORMAT (LCSF)
+
+The lcsf uses a length-based separator and basic format is
+
+<KEY> <LINES_COUNT>
+<LINES>
+
+For example
+
+DOG 1
+I love my dog
+
+This is a simple demo of lcsf
+Warning: encode is UTF-8 and in CRLF parser auto remove \r
