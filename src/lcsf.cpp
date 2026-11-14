@@ -51,7 +51,7 @@ std::vector <lcsf::lcsf_pair> lcsf::decode(const std::vector <std::string> data)
     std::size_t curr_line = 0;
     while (curr_line < data.size()) {
         lcsf::lcsf_pair temp_pair;
-        std::string header = data[0];
+        std::string header = data[curr_line];
         std::string key = "";
         std::string line_numstr = "";
 
