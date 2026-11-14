@@ -1,4 +1,7 @@
-# LEMON
+<h1>
+    <img src='assets/logo.png' align='right' width='49'> LEMON
+</h1>
+
 Um gerenciador simples de LLMs locais pro llama.cpp
 
 ## Licenças de Terceiros
