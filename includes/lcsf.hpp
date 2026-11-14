@@ -4,9 +4,10 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <cstdio> // EOF
 
 namespace lcsf {
-    // returns [[key: [lines]]]
+    // returns [lcsf_pair, lcsf_pair...]
     struct lcsf_pair {
         std::string key;
         std::vector <std::string> lines;
@@ -22,7 +23,7 @@ namespace lcsf {
     std::vector <std::string> encode(const std::vector <lcsf_pair> data); // extrated to raw string array
 
     // TOOLS
-    std::size_t find_key(lcsf_ptr, std::string key); // return key index in lcsf_ptr
+    int find_key(lcsf_ptr, std::string key); // return key index in lcsf_ptr if dont find return -1
     void edit_key(lcsf_ptr, std::string key, std::vector <std::string> values); // replace key value
     std::vector <std::string> read_key(lcsf_ptr, std::string key); // return key lines
 
