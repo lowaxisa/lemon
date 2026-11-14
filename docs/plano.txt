@@ -12,7 +12,7 @@ O projeto inteiro o foco eh ser um executavel que monta a estrutura:
 Pro projeto vo fazer em c++ mesmo com sdl3 e imgui
 
 O llama.cpp em thirdparty eh pra testes do programa
-Eu tenho que escrever algo em comp.ps1 que compile o llama como um generic-cpu-1.0
+Eu tenho que escrever algo em comp.ps1 que compile o llama como um generic-cpu
 Pra decidir logo como fica em /backends
 Bom vai ter uma pasta por exemplo com o nome acima ali e ai deixar o llama-server.exe la dentro junto de todas dlls
 
