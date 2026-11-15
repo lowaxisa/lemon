@@ -3,5 +3,6 @@
 
 #include "lcsf.hpp"
 #include "common.hpp"
+#include "load.hpp"
 
 #endif

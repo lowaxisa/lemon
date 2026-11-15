@@ -4,9 +4,6 @@
 namespace fs = std::filesystem;
 
 // functions prototype
-void check_dir();
-void check_file();
-void load_settings();
 extern void page_home();
 extern void page_debug();
 extern void page_conf();
@@ -18,9 +15,7 @@ int main(int argc, char *argv[]) {
     executable_path = std::filesystem::path(buffer);
     executable_dir = executable_path.parent_path();
 
-    check_dir(); // setup directorys
-    check_file(); // setup files
-    load_settings();
+    lemon_boot();
     // setup sdl
     SDL_Init(SDL_INIT_VIDEO);
 
@@ -77,33 +72,4 @@ int main(int argc, char *argv[]) {
     SDL_DestroyWindow(window);
     SDL_Quit();
     return 0;
-}
-
-void check_dir() { // create base directorys for exe if they doesnt exists
-    std::vector <std::string> paths = {"backends", "models", "chats", "prompts"};
-
-    for (std::string &dir : paths) {
-        std::filesystem::path target_dir = executable_dir / dir;
-
-        if (!fs::exists(target_dir)) {
-            fs::create_directory(target_dir);
-        }
-    }
-}
-
-void check_file() {
-    std::filesystem::path settings_file = executable_dir / "settings.txt";
-
-    if (!fs::exists(settings_file)) {
-        std::ofstream file(settings_file);
-        file << "USERNAME 1\nnoname";
-        file.close();
-    }
-}
-
-void load_settings() {
-    std::string path(executable_dir.string() + "\\settings.txt");
-    std::vector <lcsf::lcsf_pair> src = lcsf::parse_file(path);
-
-    username = lcsf::read_key(src, "USERNAME")[0];
 }
