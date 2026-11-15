@@ -35,6 +35,21 @@ std::vector <lcsf::lcsf_pair> lcsf::parse_file(std::string path) { // wrapper fo
 }
 
 void lcsf::store_file(lcsf_ptr, std::string path) {
+    /*
+    ideia
+    abrir e limpar o arquivo
+    encodar o lcsf
+    salvar no arquivo
+    */
+    std::vector <std::string> encoded_data = lcsf::encode(data);
+    std::ofstream file(path);
+    file.clear();
+
+    for (std::size_t i = 0; i < encoded_data.size(); i++) {
+        file << encoded_data[i] + '\n'; // enfia a linha e a quebra de linha
+    }
+
+    file.close();
 }
 
 // LOGIC
@@ -82,10 +97,47 @@ std::vector <lcsf::lcsf_pair> lcsf::decode(const std::vector <std::string> data)
     return out;
 }
 
-/*
 std::vector <std::string> lcsf::encode(const std::vector <lcsf_pair> data) { // extrated to raw string array
+    /*
+    ideia
+    varrer data
+    criar um vetor alternativo com todos \n considerados (detectar os \n e quebrar a linha no vetor alternativo)
+    */
+    std::vector <std::string> out;
+
+    for (std::size_t i = 0; i < data.size(); i++) {
+        std::string key = data[i].key;
+        std::vector <std::string> temp_lines = {};
+
+        for (std::size_t j = 0; j < data[i].lines.size(); j++) { // varre o vetor de strings
+            std::string buffer = ""; // buffer temporario pra strings sem \n
+
+            for (std::size_t k = 0; k < data[i].lines[j].size(); k++) { // varre a string
+                char c = data[i].lines[j][k];
+                if (c == '\n') {
+                    // salva a string e pula esse caractere \n
+                    temp_lines.push_back(buffer);
+                    buffer = "";
+                } else {
+                    // se for qualquer outra coisa
+                    buffer += c;
+                }
+            }
+            // pega oq sobra
+            temp_lines.push_back(buffer);
+        }
+
+        std::size_t line_count = temp_lines.size(); // tanto de linha pra meter no cabecalho do lcsf
+        std::string line_count_str = std::to_string(line_count);
+
+        out.push_back(key + " " + line_count_str); // enfia o cabecalho
+        for (std::size_t j = 0; j < temp_lines.size(); j++) { // varre o vetor de linhas limpas
+            out.push_back(temp_lines[j]); // adiciona a linha
+        }
+    }
+
+    return out;
 }
-*/
 
 // TOOLS
 int lcsf::find_key(lcsf_ptr, std::string key) { // return key index in lcsf_ptr if dont find return -1
@@ -111,12 +163,22 @@ std::vector <std::string> lcsf::read_key(lcsf_ptr, std::string key) { // return 
     return data[find_key(data, key)].lines;
 }
 
-/*
 // LIFE CYCLE
 bool lcsf::new_key(lcsf_ptr, std::string key, std::vector <std::string> values) { // return true if has created else key exists
+    if (find_key(data, key) == -1) {
+        lcsf::lcsf_pair pair;
+        pair.key = key;
+        pair.lines = values;
+        data.push_back(pair);
+        return true;
+    } else {return false;}
 }
+
 void lcsf::delete_key(lcsf_ptr, std::string key) { // erase key
+    int i = find_key(data, key);
+    if (i != -1) {
+        data.erase(data.begin() + i);
+    }
 }
-*/
 
 #undef lcsf_ptr
