@@ -37,13 +37,12 @@ std::vector <lcsf::lcsf_pair> lcsf::parse_file(std::string path) { // wrapper fo
 void lcsf::store_file(lcsf_ptr, std::string path) {
     /*
     ideia
-    abrir e limpar o arquivo
+    abrir
     encodar o lcsf
     salvar no arquivo
     */
     std::vector <std::string> encoded_data = lcsf::encode(data);
     std::ofstream file(path);
-    file.clear();
 
     for (std::size_t i = 0; i < encoded_data.size(); i++) {
         file << encoded_data[i] + '\n'; // enfia a linha e a quebra de linha
