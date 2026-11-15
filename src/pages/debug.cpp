@@ -16,7 +16,7 @@ void console_help(std::vector <std::string> args) {
         "help - show this message\n"
         "say [msg] - is a test for args\n"
         "lcsf_help - show lcsf commands\n"
-        "clear - clear console";
+        "clear - clear console\n";
 }
 
 void console_clear(std::vector <std::string> args) {

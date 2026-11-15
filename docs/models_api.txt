@@ -1,0 +1,17 @@
+Esse doc diz como se cria um load.txt para que o modelo seja reconhecido e explica cada flag
+
+Primeiramente eh necessario criar uma pasta em /models para agrupar seu modelo e o load.txt
+Dentro dela deve conter pelo menos o load.txt
+OBS o nome do modelo visto vai ser o nome da pasta
+
+Dentro do load.txt voce deve ter esses campos LCSF
+
+RUN_ENGINE 1
+nome da pasta do runner em /backends
+
+esse campo especifica o nome da pasta do runner
+
+RUN_ARGS 1
+argumentos de inicializacao
+
+esse campo vai concatenado a inicializacao do llama-server.exe e eh executado dentro da pasta do modelo
