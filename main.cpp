@@ -5,6 +5,8 @@ namespace fs = std::filesystem;
 
 // functions prototype
 void check_dir();
+void check_file();
+void load_settings();
 extern void page_home();
 extern void page_debug();
 extern void page_conf();
@@ -17,6 +19,8 @@ int main(int argc, char *argv[]) {
     executable_dir = executable_path.parent_path();
 
     check_dir(); // setup directorys
+    check_file(); // setup files
+    load_settings();
     // setup sdl
     SDL_Init(SDL_INIT_VIDEO);
 
@@ -85,4 +89,21 @@ void check_dir() { // create base directorys for exe if they doesnt exists
             fs::create_directory(target_dir);
         }
     }
+}
+
+void check_file() {
+    std::filesystem::path settings_file = executable_dir / "settings.txt";
+
+    if (!fs::exists(settings_file)) {
+        std::ofstream file(settings_file);
+        file << "USERNAME 1\nnoname";
+        file.close();
+    }
+}
+
+void load_settings() {
+    std::string path(executable_dir.string() + "\\settings.txt");
+    std::vector <lcsf::lcsf_pair> src = lcsf::parse_file(path);
+
+    username = lcsf::read_key(src, "USERNAME")[0];
 }

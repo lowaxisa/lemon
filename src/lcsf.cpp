@@ -85,15 +85,33 @@ std::vector <lcsf::lcsf_pair> lcsf::decode(const std::vector <std::string> data)
 /*
 std::vector <std::string> lcsf::encode(const std::vector <lcsf_pair> data) { // extrated to raw string array
 }
+*/
 
 // TOOLS
 int lcsf::find_key(lcsf_ptr, std::string key) { // return key index in lcsf_ptr if dont find return -1
-}
-void lcsf::edit_key(lcsf_ptr, std::string key, std::vector <std::string> values) { // replace key value
-}
-std::vector <std::string> lcsf::read_key(lcsf_ptr, std::string key) { // return key lines
+    int idx = -1;
+
+    for (int i = 0; i < data.size(); i++) {
+        lcsf::lcsf_pair pair = data[i];
+
+        if (pair.key == key) {
+            idx = i;
+            break;
+        }
+    }
+
+    return idx;
 }
 
+void lcsf::edit_key(lcsf_ptr, std::string key, std::vector <std::string> values) { // replace key value
+    data[find_key(data, key)].lines = values;
+}
+
+std::vector <std::string> lcsf::read_key(lcsf_ptr, std::string key) { // return key lines
+    return data[find_key(data, key)].lines;
+}
+
+/*
 // LIFE CYCLE
 bool lcsf::new_key(lcsf_ptr, std::string key, std::vector <std::string> values) { // return true if has created else key exists
 }
