@@ -1,14 +1,4 @@
-#include <SDL3/SDL.h>
-#include "imgui.h"
-#include "imgui_impl_sdl3.h"
-#include "imgui_impl_sdlrenderer3.h"
-
-#include <filesystem>
-#include <string>
-#include <vector>
-#include <windows.h>
-
-#include "includes/lcsf.hpp"
+#include "umbrella.hpp"
 
 // misc
 namespace fs = std::filesystem;
@@ -18,15 +8,6 @@ void check_dir();
 extern void page_home();
 extern void page_debug();
 extern void page_conf();
-
-// global vars
-std::filesystem::path executable_path;
-std::filesystem::path executable_dir;
-std::string curr_page = "home";
-std::string username = "noname";
-
-// debug page vars
-std::string debug_page_console_src = "lemon debug console\n> ";
 
 int main(int argc, char *argv[]) {
     // get executable directory

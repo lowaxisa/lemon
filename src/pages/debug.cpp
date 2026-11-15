@@ -1,5 +1,7 @@
 #include "umbrella.hpp"
 
+std::string debug_page_console_src = "lemon debug console\n> ";
+
 std::vector <std::string> slice_cmd(std::string str);
 
 struct cmd_pair {
