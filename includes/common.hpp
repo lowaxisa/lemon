@@ -30,4 +30,7 @@ extern bool has_model_selected;
 // imgui helpers
 #define IMREL2(XP, YP) ImVec2(ImGui::GetContentRegionMax().x * (XP), ImGui::GetContentRegionMax().y * (YP))
 
+// pages functions export
+extern void on_conf_page();
+
 #endif

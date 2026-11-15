@@ -52,6 +52,7 @@ void page_home() {
     ImGui::SameLine();
     if (ImGui::Button("configurations")) {
         curr_page = "conf";
+        on_conf_page();
     }
     ImGui::EndChild();
 
