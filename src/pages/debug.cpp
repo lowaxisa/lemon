@@ -68,8 +68,6 @@ void console_lcsf_edit(std::vector <std::string> args) {
         temp += args[i];
         if (i + 1 < args.size()) {
             temp += " ";
-        } else {
-            temp += "\n";
         }
     }
 
