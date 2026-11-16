@@ -1,14 +1,14 @@
 Esse formato eh o mais complexo pois ele ja foi pensado para suportar novas funcionalidades sem alterar a estrutura
 por ser complexo vou criar funcoes auxiliares para o LCSF que converte arrays estruturados e com tipos em LCSF validos
 
-chamarei isso de oof (object oriented format)
+chamarei isso de loof (Lcsf Object Oriented Format)
 Para isso eh necessario alguns tipos
 chave com o conteudo real dentro
 chave de chave
 
 entao para isso eh processar algo como
-["dic", "miau", [[...], [...]]]
-["arr", ["uau", "varias linhas", "massa"]]
+["DIC", "name", [[ARR or DIC], [...]]]
+["ARR", "name", ["uau", "varias linhas", "massa"]]
 pode ser tanto array quanto structs, vou de array
 
 deixando isso de lado os chats vao ter os seguintes campos base
@@ -80,3 +80,15 @@ VERSION_2 X
         SOURCE_0 X
             Ola
             Cuidado comer carvao eh arriscado
+
+AVISO
+Pro decoder saber o que eh o que na decodificacao no encode ele precisa alterar as keys pra carregar um prefixo
+por exemplo
+
+ARR_CHAVES 3
+    chave ultra secreta
+    chave secreta
+    chave ok
+
+o ARR_ eh adicionado para identificacao e isso viraria
+["ARR", "CHAVES" ["chave ultra secreta", "chave secreta", "chave ok"]]
