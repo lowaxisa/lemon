@@ -1,0 +1,82 @@
+Esse formato eh o mais complexo pois ele ja foi pensado para suportar novas funcionalidades sem alterar a estrutura
+por ser complexo vou criar funcoes auxiliares para o LCSF que converte arrays estruturados e com tipos em LCSF validos
+
+chamarei isso de oof (object oriented format)
+Para isso eh necessario alguns tipos
+chave com o conteudo real dentro
+chave de chave
+
+entao para isso eh processar algo como
+["dic", "miau", [[...], [...]]]
+["arr", ["uau", "varias linhas", "massa"]]
+pode ser tanto array quanto structs, vou de array
+
+deixando isso de lado os chats vao ter os seguintes campos base
+CHAT_PROMPT
+FORK_X
+    MSG_X
+
+o nome do chat ja vai ser resolvido pelo txt seguindo o padrao nome_chat(_prefixo numerico) tipo "meu primeiro chat_0.txt"
+
+CHAT_PROMPT 1
+Nome do prompt
+
+Esse argumento sobrepoem o prompt padrao definido globalmente no sistema
+
+VERSION_0 X
+    METADATA 0 // empty because no has fork
+    MSG_0 X
+        SENDER 1
+            USER
+        SOURCES X
+            msg
+            file
+            text
+        SOURCE_0 X
+            Ola ia
+            Gostaria de saber ...
+        SOURCE_1 X
+            file.txt
+            Hello this is a guide ...
+        SOURCE_2 X
+            cake.png
+            hex code
+    MSG_1 X
+        SENDER 1
+            IA
+        SOURCES X
+            msg
+        SOURCE_0 X
+            Ola
+            Sobre o bolo que voce queimou
+            Infelizmente voce nao eh um bom cozinheiro
+    MSG_2 X
+        SENDER 1
+            USER
+        SOURCES X
+            msg
+        SOURCE_0 X
+            Que? ta maluco fi
+VERSION_1 X
+    METADATA X
+        0 // fork from version 0
+        1 // forked at message 1
+    MSG_2 X
+        SENDER 1
+            USER
+        SOURCES X
+            msg
+        SOURCE_0 X
+            Vamo criar historia de panqueca maluca
+VERSION_2 X
+    METADATA X
+        0 // fork from version 0
+        0 // forked at message 1
+    MSG_1 X
+        SENDER 1
+            IA
+        SOURCES X
+            msg
+        SOURCE_0 X
+            Ola
+            Cuidado comer carvao eh arriscado

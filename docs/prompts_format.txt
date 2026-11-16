@@ -1,0 +1,15 @@
+O sistema de prompts de sistema servem para personalizar a IA de forma facil e rapida
+Esse prompt nao eh salvo na conversa real, apenas eh enviado em tag sysprompt a cada nova mensagem pra economizar memoria
+Cada chat vai ter o propio prompt definido e mudavel a qualquer hora
+Tambem vai ter uma configuracao global que eh sobrescrita pela do chat salvo se o campo tiver sido definido (veja chats_format.txt)
+
+O formato de prompt eh bem simples e consiste somente um campo
+O nome do prompt eh usado o nome do arquivo.txt em que ele mora
+eles devem ser criado em /prompts por exemplo /prompts/ajudante.txt
+
+O campo pra definir o prompt eh
+
+PROMPT X
+...
+
+Pode ter multiplas linhas e etc, e pra ficar facil a criacao pra nao gerenciar isso vai ter no menu de configuracoes a aba prompts onde se gerencia eles
